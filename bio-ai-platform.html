@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="uz"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bio AI-School</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Nunito:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f3f1f9;--surf:#fff;--ink:#1b1633;--mute:#6a6489;--line:#e2dff0;--purple:#3b2a6b;--pink:#e8508a;--teal:#12a594;--soft:#efeaf9;--lens:#2a1d52;--onp:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#130f26;--surf:#1d1738;--ink:#f0ecfa;--mute:#a49dc6;--line:#322a58;--purple:#b9a6ff;--pink:#ff6fa3;--teal:#3fd9c5;--soft:#271f4a;--lens:#0c0820;--onp:#0e1f14;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#130f26;--surf:#1d1738;--ink:#f0ecfa;--mute:#a49dc6;--line:#322a58;--purple:#b9a6ff;--pink:#ff6fa3;--teal:#3fd9c5;--soft:#271f4a;--lens:#0c0820;--onp:#0e1f14;color-scheme:dark}
+*,*::before,*::after{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Nunito',system-ui,sans-serif;line-height:1.55;display:flex}
+h1,h2,h3,h4{font-family:'Bricolage Grotesque',system-ui,sans-serif;margin:0;letter-spacing:-.02em;line-height:1.15}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--pink);outline-offset:2px}
+aside{width:250px;flex:none;background:var(--surf);border-right:1px solid var(--line);padding:22px 16px;display:flex;flex-direction:column;gap:6px;height:100vh;position:sticky;top:0}
+.logo{display:flex;align-items:center;gap:10px;padding:8px 10px 22px;font-family:'Bricolage Grotesque';font-weight:800;font-size:21px}
+.logo i{width:34px;height:34px;border-radius:50%;background:radial-gradient(circle at 35% 35%,var(--pink),var(--purple));position:relative}
+.logo i::after{content:"";position:absolute;inset:10px;border-radius:50%;background:var(--surf)}
+.logo small{display:block;font:700 11px 'Nunito';color:var(--teal);letter-spacing:.02em}
+aside a{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:14px;text-decoration:none;color:var(--mute);font-weight:700;font-size:15px}
+aside a:hover{background:var(--soft);color:var(--ink)}
+aside a.on{background:var(--pink);color:#fff}
+aside a span{width:8px;height:8px;border-radius:50%;background:currentColor;opacity:.35;margin:0 7px;flex:none}aside a.on span{opacity:1}
+.side-foot{margin-top:auto;background:var(--soft);border-radius:16px;padding:14px;font-size:13px;color:var(--mute)}
+.side-foot b{color:var(--ink);display:block;font-size:15px}
+main{flex:1;min-width:0;padding:22px 32px 48px;overflow-y:auto;height:100vh}
+.top{display:flex;align-items:center;gap:16px;background:var(--surf);border:1px solid var(--line);border-radius:20px;padding:14px 20px;margin-bottom:24px}
+.av{width:46px;height:46px;border-radius:14px;background:linear-gradient(135deg,var(--teal),var(--purple));display:grid;place-items:center;color:#fff;font:800 20px 'Bricolage Grotesque'}
+.top h1{font-size:21px}
+.top input{font:700 21px 'Bricolage Grotesque';border:0;background:transparent;color:var(--ink);width:11ch;border-bottom:2px dashed var(--line);padding:0}
+.top small{color:var(--teal);font-weight:700}
+.pts{margin-left:auto;text-align:right;font-weight:800;font-size:22px;font-family:'Bricolage Grotesque'}
+.pts small{display:block;color:var(--mute);font:700 11px 'Nunito'}
+.card{background:var(--surf);border:1px solid var(--line);border-radius:24px;padding:28px}
+.view{display:none}.view.on{display:block}
+.vh{margin-bottom:20px}.vh h2{font-size:32px}.vh p{margin:6px 0 0;color:var(--mute)}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px}
+.stat{background:var(--surf);border:1px solid var(--line);border-radius:20px;padding:18px;display:flex;gap:14px;align-items:center}
+.stat i{width:8px;height:46px;border-radius:6px;display:grid;place-items:center;font-style:normal;font-size:22px}
+.stat span{color:var(--mute);font-size:12px;font-weight:700;display:block}.stat b{font:800 26px 'Bricolage Grotesque'}
+.welcome{display:grid;grid-template-columns:1.2fr 1fr;gap:28px;align-items:center;background:linear-gradient(135deg,var(--purple),#5a3fa3);color:#fff;border:0;overflow:hidden}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .welcome{color:var(--onp)}}
+:root[data-theme="dark"] .welcome{color:var(--onp)}
+.welcome h2{font-size:38px;margin-bottom:10px}.welcome p{margin:0 0 20px;opacity:.85;max-width:44ch}
+.btn{border:0;border-radius:14px;padding:13px 22px;font-weight:700;background:var(--pink);color:#fff;text-decoration:none;display:inline-block}
+.lens{aspect-ratio:1;max-width:270px;margin:0 auto;width:100%;border-radius:50%;background:radial-gradient(circle,#2f6b45,var(--lens) 75%);border:8px solid rgba(255,255,255,.9);box-shadow:0 0 0 3px var(--pink);overflow:hidden;position:relative}
+.field{position:absolute;inset:0;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.cell{position:absolute;border-radius:50%;border:2px solid rgba(255,255,255,.55);background:radial-gradient(circle at 40% 35%,rgba(246,196,83,.5),rgba(111,211,139,.3));animation:drift 9s ease-in-out infinite alternate}
+.cell::after{content:"";position:absolute;width:28%;height:28%;left:36%;top:36%;border-radius:50%;background:rgba(246,196,83,.9)}
+@keyframes drift{to{transform:translate(16px,-12px) rotate(25deg)}}
+.zoom{display:flex;justify-content:center;gap:6px;margin-top:12px}
+.zoom button{border:0;background:rgba(255,255,255,.18);color:inherit;border-radius:99px;padding:5px 14px;font-weight:700;font-size:13px}
+.zoom button[aria-pressed="true"]{background:var(--pink);color:#fff}
+.fact{margin-top:16px;display:flex;gap:14px;align-items:center}.fact b{font-family:'Bricolage Grotesque';font-size:18px}
+.split{display:grid;grid-template-columns:230px 1fr;gap:20px;align-items:start}
+.list{display:grid;gap:8px}
+.item{text-align:left;border:2px solid var(--line);background:var(--surf);border-radius:14px;padding:12px 14px;font-weight:700;display:flex;justify-content:space-between}
+.item[aria-selected="true"]{border-color:var(--purple);background:var(--soft)}
+.lesson{display:grid;grid-template-columns:1.4fr 1fr;gap:28px}.lesson h3{font-size:30px;margin-bottom:12px}.lesson p{margin:0 0 12px;max-width:64ch}
+.facts{background:var(--soft);border-radius:16px;padding:18px 20px;align-self:start}.facts h4{margin-bottom:8px;font-size:17px}.facts ul{margin:0;padding-left:18px}.facts li{margin:6px 0}
+.done{border:2px solid var(--teal);background:transparent;color:var(--teal);border-radius:12px;padding:9px 16px;font-weight:700;margin-top:6px}
+.done[aria-pressed="true"]{background:var(--teal);color:#fff}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.chip{border:2px solid var(--line);background:var(--surf);border-radius:99px;padding:8px 16px;font-weight:700}
+.chip[aria-selected="true"]{background:var(--purple);border-color:var(--purple);color:var(--onp)}
+.bar{height:8px;background:var(--soft);border-radius:9px;overflow:hidden;margin:6px 0 20px}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--teal),var(--pink));transition:width .4s}
+.q{font:700 26px 'Bricolage Grotesque';margin-bottom:16px;line-height:1.25}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.opt{text-align:left;border:2px solid var(--line);background:var(--bg);border-radius:14px;padding:14px 16px;font-weight:500}
+.opt:hover:not(:disabled){border-color:var(--purple)}
+.opt.ok{border-color:var(--teal);background:color-mix(in srgb,var(--teal) 16%,transparent)}.opt.bad{border-color:var(--pink);background:color-mix(in srgb,var(--pink) 16%,transparent)}
+.why{margin-top:14px;padding:12px 16px;border-radius:12px;background:var(--soft)}
+.row{display:flex;justify-content:space-between;align-items:center;margin-top:16px;gap:12px}
+.score{text-align:center}.score big{font:800 76px 'Bricolage Grotesque';color:var(--pink);display:block;line-height:1}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px}
+.fc{perspective:900px;height:170px;border:0;background:none;padding:0}
+.fc div{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
+.fc[aria-pressed="true"] div{transform:rotateY(180deg)}
+.fc span{position:absolute;inset:0;border-radius:18px;padding:18px;display:flex;align-items:center;justify-content:center;text-align:center;backface-visibility:hidden}
+.fc .f{background:var(--surf);border:1px solid var(--line);font:700 21px 'Bricolage Grotesque'}
+.fc .b{background:var(--purple);color:var(--onp);transform:rotateY(180deg);font-size:15px}
+@media (max-width:900px){body{flex-direction:column}aside{width:100%;height:auto;position:static;flex-direction:row;overflow-x:auto;padding:10px}.logo,.side-foot{display:none}aside a{white-space:nowrap}main{height:auto;padding:16px}.welcome,.split,.lesson,.grid3,.opts{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.logo svg{flex:none;filter:drop-shadow(0 6px 10px rgba(232,80,138,.35))}
+main{background:radial-gradient(600px 320px at 92% -4%,color-mix(in srgb,var(--pink) 14%,transparent),transparent),radial-gradient(520px 320px at 0 100%,color-mix(in srgb,var(--teal) 12%,transparent),transparent)}
+.card,.stat,.top{box-shadow:0 12px 32px -22px rgba(30,43,34,.5)}
+.stat{transition:transform .2s}.stat:hover{transform:translateY(-3px)}
+aside a.on{background:linear-gradient(135deg,var(--pink),#b13fa0);color:#fff;box-shadow:0 10px 20px -10px var(--pink)}
+.side-foot .bar{background:var(--surf)}
+.welcome{position:relative;isolation:isolate}
+.welcome::before{content:"";position:absolute;width:320px;height:320px;right:-60px;top:-120px;border-radius:50%;background:radial-gradient(circle,rgba(246,196,83,.5),transparent 70%);z-index:-1}
+.welcome::after{content:"";position:absolute;width:260px;height:260px;left:30%;bottom:-140px;border-radius:50%;background:radial-gradient(circle,rgba(63,217,197,.4),transparent 70%);z-index:-1}
+.lens::after{content:"";position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 0 40px rgba(0,0,0,.45);background:linear-gradient(rgba(255,255,255,.28),rgba(255,255,255,.28)) center/1px 100% no-repeat,linear-gradient(rgba(255,255,255,.28),rgba(255,255,255,.28)) center/100% 1px no-repeat}
+.home2{display:grid;grid-template-columns:280px 1fr;gap:16px;margin-top:16px}
+.ring{display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px}
+.rg{--p:0%;width:150px;height:150px;border-radius:50%;background:conic-gradient(var(--pink) var(--p),var(--soft) 0);display:grid;place-items:center;position:relative}
+.rg::before{content:"";position:absolute;inset:14px;border-radius:50%;background:var(--surf)}
+.rg b{position:relative;font:800 44px 'Bricolage Grotesque'}
+.ring h3{font-size:20px}.ring p{margin:4px 0 0;color:var(--mute);font-size:14px}
+.tcs{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.tc{display:flex;flex-direction:column;gap:6px;padding:20px;border-radius:22px;color:#fff;text-decoration:none;background:linear-gradient(135deg,var(--c1),var(--c2));position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s}
+.tc:hover{transform:translateY(-4px);box-shadow:0 18px 30px -16px var(--c2)}
+.tc .tg{position:absolute;right:-6px;top:-22px;font:800 120px 'Bricolage Grotesque';opacity:.18}
+.tc b{font:800 22px 'Bricolage Grotesque'}.tc small{opacity:.92;font-weight:700}
+.tc .bar{background:rgba(255,255,255,.3);margin:8px 0 0}.tc .bar i{background:#fff}
+.opt{display:flex;gap:12px;align-items:center}
+.opt em{font:800 14px 'Bricolage Grotesque';font-style:normal;width:28px;height:28px;border-radius:9px;background:var(--soft);display:grid;place-items:center;flex:none}
+.opt.ok em{background:var(--teal);color:#fff}.opt.bad em{background:var(--pink);color:#fff}
+.item{transition:transform .15s}.item:hover{transform:translateX(3px)}
+@media (max-width:900px){.home2,.tcs{grid-template-columns:1fr}}
+.logo svg{filter:none}
+main{background:none}
+.card{border-radius:16px;padding:24px;box-shadow:0 1px 2px rgba(30,43,34,.06)}
+.stat,.top{border-radius:14px;box-shadow:0 1px 2px rgba(30,43,34,.06)}
+.stat:hover{transform:none}
+.av{border-radius:12px}
+.vh h2{font-size:28px;font-weight:700}
+aside a{border-radius:10px}
+aside a.on{background:var(--soft);color:var(--purple);box-shadow:inset 3px 0 0 var(--pink)}
+aside a.on span{background:var(--pink);opacity:1}
+.btn{border-radius:10px}
+.welcome{background:linear-gradient(120deg,#245a3a,#3f8a58);border-radius:16px}
+.welcome h2{font-size:34px;font-weight:700}
+.welcome::before,.welcome::after{display:none}
+.tc{background:var(--surf);color:var(--ink);border:1px solid var(--line);border-top:4px solid var(--c1);border-radius:14px;box-shadow:0 1px 2px rgba(30,43,34,.06)}
+.tc:hover{transform:none;border-color:var(--c1);box-shadow:0 8px 20px -14px var(--c1)}
+.tc .tg{position:static;opacity:1;width:40px;height:40px;border-radius:10px;display:grid;place-items:center;font:800 18px 'Bricolage Grotesque';background:color-mix(in srgb,var(--c1) 14%,transparent);color:var(--c1);margin-bottom:6px}
+.tc b{color:var(--ink);font-size:19px;font-weight:700}
+.tc small{color:var(--mute);opacity:1}
+.tc .bar{background:var(--soft)}.tc .bar i{background:var(--c1)}
+.opt,.item,.chip{border-radius:10px}
+.chip{border-radius:99px}
+.fc span{border-radius:14px}
+.ring{padding:24px}
+.lh{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}.lh span{font-size:12px;font-weight:700;color:var(--mute);background:var(--soft);border-radius:99px;padding:4px 12px}
+.obj{border-left:4px solid var(--teal);background:color-mix(in srgb,var(--teal) 9%,transparent);padding:12px 16px;border-radius:0 10px 10px 0;margin:14px 0 18px}
+.obj h4{font-size:15px;margin-bottom:4px}.obj ul{margin:0;padding-left:18px}
+.terms{display:flex;gap:6px;flex-wrap:wrap;margin:14px 0}.terms span{background:var(--soft);color:var(--purple);font-weight:700;font-size:13px;border-radius:8px;padding:4px 10px}
+.check{margin-top:20px;border:1px solid var(--line);border-radius:12px;padding:16px;background:var(--bg)}
+.check h4{font-size:16px;margin-bottom:6px}
+.copt{display:block;width:100%;text-align:left;border:2px solid var(--line);background:var(--surf);border-radius:10px;padding:10px 14px;margin-top:8px;color:var(--ink)}
+.copt:disabled{color:var(--ink)}.copt.ok{border-color:var(--teal)}.copt.bad{border-color:var(--pink)}
+.lnav{display:flex;justify-content:space-between;gap:10px;margin-top:20px}
+.lnav button{border:2px solid var(--line);background:var(--surf);border-radius:10px;padding:9px 16px;font-weight:700;color:var(--ink)}
+.lnav button:disabled{opacity:.4;cursor:default}
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.bd{display:flex;gap:12px;align-items:center;border:1px solid var(--line);border-radius:12px;padding:14px;opacity:.55}
+.bd.on{opacity:1;border-color:var(--teal)}
+.bd i{width:36px;height:36px;border-radius:50%;background:var(--soft);display:grid;place-items:center;font-style:normal;font-weight:800;color:var(--mute);flex:none}
+.bd.on i{background:var(--teal);color:#fff}
+.bd b{display:block;font-size:14px}.bd span{font-size:12px;color:var(--mute)}
+.dots{display:flex;flex-wrap:wrap;gap:5px;margin:-8px 0 18px}.dots i{width:9px;height:9px;border-radius:50%;background:var(--line)}.dots i.g{background:var(--teal)}.dots i.r{background:var(--pink)}.dots i.c{background:var(--purple);transform:scale(1.35)}
+.tag{font-size:13px;font-weight:700;color:var(--purple);margin-bottom:6px}
+.chip{font-size:13px;padding:8px 14px;text-align:left}.item{text-align:left;line-height:1.35;gap:8px}.lesson h3{font-size:26px}
+
+:root{--bg:#eef2e6;--surf:#fffdf8;--ink:#1e2b22;--mute:#5e6b60;--line:#d9e1cc;--soft:#e4ebd6;--lens:#12301f;--purple:#24533a;--pink:#e0a030;--teal:#3d9e55;--bad:#d9483b;--onp:#fff}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1a13;--surf:#17261c;--ink:#eaf2e3;--mute:#9db1a0;--line:#2a4032;--soft:#1e3226;--lens:#08140d;--purple:#8fd3a0;--pink:#f2b24a;--teal:#6fd38b;--bad:#ff8a7a;--onp:#0e1f14}}
+:root[data-theme="dark"]{--bg:#0f1a13;--surf:#17261c;--ink:#eaf2e3;--mute:#9db1a0;--line:#2a4032;--soft:#1e3226;--lens:#08140d;--purple:#8fd3a0;--pink:#f2b24a;--teal:#6fd38b;--bad:#ff8a7a;--onp:#0e1f14}
+body{font-size:17px}
+.btn{background:var(--purple);color:var(--onp);border-radius:18px;padding:15px 26px;font-size:16px;box-shadow:0 4px 0 rgba(0,0,0,.2)}
+.welcome .btn{background:#f6c453;color:#1e2b22}
+.card{border-radius:28px;padding:30px}.stat,.top{border-radius:24px}.welcome{border-radius:30px}
+aside{border-radius:0 28px 28px 0}aside a{border-radius:18px;padding:13px 16px}.av{border-radius:18px}
+.tc{border-radius:26px}.item{border-radius:18px;padding:14px 16px}
+.opt{border-radius:20px;padding:16px 18px;font-size:17px;border-bottom-width:4px}.opt em{border-radius:12px;width:32px;height:32px}
+.opt.bad{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 14%,transparent)}.opt.bad em{background:var(--bad)}
+.copt{border-radius:16px}.copt.bad{border-color:var(--bad)}.dots i.r{background:var(--bad)}
+.facts{border-radius:22px}.obj{border-radius:0 18px 18px 0}.check{border-radius:20px}.terms span{border-radius:12px}
+.fc{height:180px}.fc span{border-radius:24px}.fc .b{font-size:16px}
+.lnav button,.done{border-radius:16px}.bd{border-radius:20px}.why{border-radius:18px}
+.bar{height:12px;border-radius:12px}.bar i{border-radius:12px}
+.q{font-size:28px}.vh h2{font-size:32px}.lesson p{font-size:18px;line-height:1.65}
+aside a span.ic{width:38px;height:38px;border-radius:12px;background:var(--soft);opacity:1;margin:0;display:grid;place-items:center;color:var(--purple)}
+aside a.on span.ic{background:var(--purple);color:var(--onp)}
+aside a{gap:12px;font-size:16px}
+.ic svg,.hi svg{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.ic svg{width:22px;height:22px}
+.vh h2{display:flex;align-items:center;gap:14px}
+.hi{width:54px;height:54px;border-radius:18px;display:grid;place-items:center;background:color-mix(in srgb,var(--hc) 18%,transparent);color:var(--hc);flex:none}
+.hi svg{width:30px;height:30px}
+.labgrid{display:grid;grid-template-columns:1.4fr 1fr;gap:20px;align-items:start}
+.cellbox{padding:20px}.cellbox svg{width:100%;height:auto;display:block}
+.part{cursor:pointer;transition:filter .2s}.part:hover{filter:brightness(1.07)}.part.sel,.part:focus-visible{outline:none;filter:drop-shadow(0 0 5px #e0a030) drop-shadow(0 0 2px #e0a030)}
+#cinfo h3{font-size:26px;margin-bottom:8px}#cinfo p{margin:0 0 10px}
+.pill{display:inline-block;background:color-mix(in srgb,var(--teal) 20%,transparent);font-weight:800;font-size:13px;border-radius:99px;padding:5px 14px}
+@media (max-width:900px){.labgrid{grid-template-columns:1fr}}
+.auth{position:fixed;inset:0;z-index:100;background:var(--bg);display:grid;place-items:center;padding:20px;overflow:auto}
+.auth[hidden]{display:none}
+.acard{width:100%;max-width:440px;background:var(--surf);border:1px solid var(--line);border-radius:30px;padding:34px;box-shadow:0 20px 50px -30px rgba(30,43,34,.5)}
+.acard h2{font-size:30px;margin:14px 0 4px}
+.asub{color:var(--mute);margin:0 0 18px}.asub b{color:var(--ink)}
+.lab{display:block;font-weight:800;font-size:14px;margin-bottom:14px}
+.lab input{display:block;width:100%;margin-top:6px;font:700 18px 'Nunito';border:2px solid var(--line);background:var(--bg);color:var(--ink);border-radius:16px;padding:13px 16px}
+.lab input:focus{outline:none;border-color:var(--purple)}
+.aerr{min-height:22px;color:var(--bad);font-weight:700;font-size:14px;margin-bottom:10px}
+.alinks{display:flex;justify-content:space-between;margin-top:14px}.alinks button{border:0;background:none;color:var(--mute);font-weight:700;text-decoration:underline;padding:6px 0}
+.dang{border:0;background:var(--bad);color:#fff;border-radius:12px;padding:8px 14px;font-weight:800;margin-top:8px;display:block}
+.plist{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pcard{display:flex;flex-direction:column;align-items:center;gap:8px;border:2px solid var(--line);background:var(--bg);border-radius:22px;padding:18px 10px;font-weight:800}
+.pcard b{width:52px;height:52px;border-radius:18px;background:var(--purple);color:var(--onp);display:grid;place-items:center;font:800 24px 'Bricolage Grotesque'}
+.pcard:hover{border-color:var(--purple)}.pcard.add b{background:var(--soft);color:var(--purple)}
+.anote{margin:22px 0 0;font-size:13px;color:var(--mute);line-height:1.5;border-top:1px solid var(--line);padding-top:14px}
+.out{border:2px solid var(--line);background:transparent;border-radius:14px;padding:8px 14px;font-weight:800;color:var(--ink)}
+.out:hover{border-color:var(--bad);color:var(--bad)}
+#nm{border-bottom-color:transparent}
+</style></head><body>
+<div id="auth" class="auth" role="dialog" aria-modal="true" aria-labelledby="at"><div class="acard"><div class="av" style="width:56px;height:56px;font-size:26px">B</div><h2 id="at">Bio AI-School</h2><div id="aview"></div>
+<p class="anote">Profil va natijalar faqat shu qurilma va brauzerda saqlanadi. PIN-kod shifrlangan holda saqlanadi, lekin bu server hisobi emas: boshqa qurilmada kirib boʻlmaydi. Bir qurilmada bir nechta oʻquvchi uchun moʻljallangan.</p></div></div>
+<aside>
+<div class="logo"><svg width="42" height="42" viewBox="0 0 48 48" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4cae62"/><stop offset="1" stop-color="#1f5133"/></linearGradient></defs><rect width="48" height="48" rx="15" fill="url(#lg)"/><circle cx="24" cy="24" r="17" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1.5"/><g stroke-linecap="round" fill="none" stroke-width="3"><path d="M17 9C17 19 31 19 31 28S17 37 17 39" stroke="#fff"/><path d="M31 9C31 19 17 19 17 28S31 37 31 39" stroke="#f6c453"/></g><g stroke="#fff" stroke-opacity=".7" stroke-width="2" stroke-linecap="round"><path d="M20.5 13.5h7"/><path d="M17.5 28h13"/><path d="M20.5 34h7"/></g><circle cx="36" cy="12" r="3" fill="#f6c453"/></svg><div>Bio AI-School<small>Biologiya platformasi</small></div></div>
+<a href="#bosh" data-v="bosh"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v9.5h13V10"/><path d="M10 19.5v-5h4v5"/></svg></span>Bosh sahifa</a>
+<a href="#darslar" data-v="darslar"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 6.5C10 5 7 4.5 3.5 5v13c3.5-.5 6.5 0 8.5 1.5 2-1.5 5-2 8.5-1.5V5C17 4.5 14 5 12 6.5z"/><path d="M12 6.5v13"/></svg></span>Darslar</a>
+<a href="#test" data-v="test"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="4.5" width="14" height="16.5" rx="3"/><path d="M9 4.5V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v.5"/><path d="m8.5 12 2 2 3.5-4"/><path d="M8.5 17.5h7"/></svg></span>Testlar</a>
+<a href="#kartalar" data-v="kartalar"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="7" width="13" height="12.5" rx="3"/><path d="M7.5 7V6a3 3 0 0 1 3-3h7a3 3 0 0 1 3 3v7a3 3 0 0 1-3 3h-1"/></svg></span>Kartochkalar</a>
+<a href="#lab" data-v="lab"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 3.5h5"/><path d="M10.5 3.5v5.2L5 18a2 2 0 0 0 1.8 3h10.4A2 2 0 0 0 19 18l-5.5-9.3V3.5"/><path d="M8 14.5h8"/></svg></span>Laboratoriya</a>
+<a href="#natija" data-v="natija"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h16"/><rect x="5.5" y="11" width="3.5" height="6.5" rx="1.2"/><rect x="10.3" y="6" width="3.5" height="11.5" rx="1.2"/><rect x="15" y="9" width="3.5" height="8.5" rx="1.2"/></svg></span>Natijalar</a>
+<div class="side-foot"><b id="lvl"></b><span id="lvlx"></span><div class="bar" style="margin:10px 0 0"><i id="lvb" style="width:0"></i></div></div>
+</aside>
+<main>
+<div class="top"><div class="av">B</div><div><h1>Salom, <input id="nm" maxlength="14" aria-label="Ismingiz" readonly value="Oʻquvchi">!</h1><small id="rank"></small></div><div class="pts"><small>Umumiy ball</small><span id="pts">0</span></div><button class="out" id="out">Chiqish</button></div>
+
+<section class="view" id="v-bosh">
+<div class="card welcome"><div><h2>Biologiya boʻyicha oʻquv platformasi</h2><p>Darslar, testlar va kartochkalar bir joyda. Oʻqing, bilimingizni sinang va natijangizni kuzating.</p><a class="btn" id="cont" href="#darslar">Darsni boshlash</a></div>
+<div><div class="lens" aria-hidden="true"><div class="field" id="field"></div></div><div class="zoom"><button aria-pressed="true" data-z="1">10×</button><button aria-pressed="false" data-z="1.8">40×</button><button aria-pressed="false" data-z="3">100×</button></div></div></div>
+<div class="grid3" id="stats"></div>
+<div class="home2"><div class="card ring"><div class="rg" id="rg"><b id="rgn">1</b></div><div><h3>Daraja progressi</h3><p id="rgt"></p></div></div><div class="tcs" id="tcs"></div></div>
+<div class="card fact" style="margin-top:16px"><div><b>Kun fakti</b><div id="dfact"></div></div></div>
+</section>
+
+<section class="view" id="v-darslar"><div class="vh"><h2><span class="hi" style="--hc:#4cae62"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 6.5C10 5 7 4.5 3.5 5v13c3.5-.5 6.5 0 8.5 1.5 2-1.5 5-2 8.5-1.5V5C17 4.5 14 5 12 6.5z"/><path d="M12 6.5v13"/></svg></span>Darslar</h2><p>Mavzuni tanlang va oʻqib chiqing.</p></div>
+<div class="split"><div class="list" id="tlist"></div><div class="card lesson" id="lesson"></div></div></section>
+
+<section class="view" id="v-test"><div class="vh"><h2><span class="hi" style="--hc:#e0a030"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="4.5" width="14" height="16.5" rx="3"/><path d="M9 4.5V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v.5"/><path d="m8.5 12 2 2 3.5-4"/><path d="M8.5 17.5h7"/></svg></span>Testlar</h2><p>Har bir toʻgʻri javob uchun 10 ball beriladi.</p></div>
+<div class="chips" id="chips"></div><div class="card" id="quiz"></div></section>
+
+<section class="view" id="v-kartalar"><div class="vh"><h2><span class="hi" style="--hc:#4a9bc7"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="7" width="13" height="12.5" rx="3"/><path d="M7.5 7V6a3 3 0 0 1 3-3h7a3 3 0 0 1 3 3v7a3 3 0 0 1-3 3h-1"/></svg></span>Kartochkalar</h2><p>Atamani oʻqing, javobni oʻylang, keyin kartani bosing.</p></div><div class="cards" id="cards"></div></section>
+
+<section class="view" id="v-lab"><div class="vh"><h2><span class="hi" style="--hc:#e0a030"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 3.5h5"/><path d="M10.5 3.5v5.2L5 18a2 2 0 0 0 1.8 3h10.4A2 2 0 0 0 19 18l-5.5-9.3V3.5"/><path d="M8 14.5h8"/></svg></span>Laboratoriya</h2><p>Oʻsimlik hujayrasi modeli. Qismini bosing va vazifasini bilib oling.</p></div>
+<div class="labgrid"><div class="card cellbox"><svg viewBox="0 0 400 300" role="group" aria-label="Oʻsimlik hujayrasi modeli"><defs>
+<g id="cp"><ellipse rx="32" ry="18" fill="#6fba68" stroke="#2f7a3a" stroke-width="3"/><path d="M-20 0h40M-12-7h24M-12 7h24" stroke="#2f7a3a" stroke-width="2" stroke-linecap="round"/></g>
+<g id="mt"><ellipse rx="22" ry="11" fill="#f3c2ad" stroke="#c2556b" stroke-width="2.5"/><path d="M-14 0q3.5-7 7 0t7 0t7 0t7 0" fill="none" stroke="#c2556b" stroke-width="2"/></g></defs>
+<rect class="part" data-p="devor" x="8" y="8" width="384" height="284" rx="64" fill="#bcd69a" stroke="#5d8a3c" stroke-width="4"/>
+<rect class="part" data-p="sitoplazma" x="26" y="26" width="348" height="248" rx="48" fill="#f2f7df"/>
+<rect class="part" data-p="membrana" x="26" y="26" width="348" height="248" rx="48" fill="none" stroke="#e0a030" stroke-width="7" pointer-events="stroke"/>
+<ellipse class="part" data-p="vakuola" cx="255" cy="170" rx="88" ry="62" fill="#cfe8f2" stroke="#5fa3c4" stroke-width="3"/>
+<g class="part" data-p="yadro"><circle cx="112" cy="102" r="50" fill="#e9dcc0" stroke="#9a6b43" stroke-width="4"/><circle cx="104" cy="96" r="15" fill="#9a6b43"/></g>
+<g class="part" data-p="xloroplast"><use href="#cp" transform="translate(82 228) rotate(-14)"/><use href="#cp" transform="translate(250 62) rotate(8)"/><use href="#cp" transform="translate(350 84) rotate(-30)"/></g>
+<g class="part" data-p="mitoxondriya"><use href="#mt" transform="translate(165 182) rotate(30)"/><use href="#mt" transform="translate(215 254) rotate(-8)"/></g></svg></div><div class="card" id="cinfo"></div></div></section>
+
+<section class="view" id="v-natija"><div class="vh"><h2><span class="hi" style="--hc:#d9718a"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h16"/><rect x="5.5" y="11" width="3.5" height="6.5" rx="1.2"/><rect x="10.3" y="6" width="3.5" height="11.5" rx="1.2"/><rect x="15" y="9" width="3.5" height="8.5" rx="1.2"/></svg></span>Natijalar</h2><p>Natijalar shu brauzerda saqlanadi.</p></div><div class="grid3" id="prog"></div>
+<div class="card" style="margin-top:16px"><h3 style="margin-bottom:10px">Mavzular boʻyicha</h3><div id="bars"></div></div>
+<div class="card" style="margin-top:16px"><h3 style="margin-bottom:12px">Yutuqlar</h3><div class="badges" id="badges"></div></div></section>
+</main>
+<script>
+/* ===== MA’LUMOTLAR: shu yerdagi T (darslar), Q (testlar), C (kartochkalar) ni almashtirasiz ===== */
+const T=[{"id": "c2", "b": "II", "n": "Tiriklikning molekula va hujayra darajasi", "t": "Hujayra — tirik organizmning tuzilish va hayot faoliyati birligi. Uni kuzatish uchun mikroskopdan foydalaniladi.", "p": "Hujayra membrana bilan oʻralgan, ichida sitoplazma va organoidlar joylashgan. Yadro irsiy axborotni saqlaydi. Oʻsimlik hujayrasida mustahkam hujayra devori va fotosintez qiladigan xloroplastlar bor. Bir xil tuzilish va vazifaga ega hujayralar toʻqimani hosil qiladi.", "f": ["Membrana — hujayrani tashqi muhitdan ajratadi", "Sitoplazma — hujayraning ichki muhiti", "Yadro — irsiy axborot saqlanadi", "Xloroplast — fotosintez organoidi", "Mikroskop — kattalashtirib koʻrish asbobi"]}, {"id": "c3", "b": "III", "n": "Organ va organlar sistemasi", "t": "Toʻqimalar organlarni, organlar esa organlar sistemasini hosil qiladi.", "p": "Oʻsimlikning ildiz, poya va bargi vegetativ organlar, gul, meva va urugʻi generativ organlardir. Ildiz suv va mineral moddalarni shimib, oʻsimlikni tuproqqa mahkamlaydi. Poya moddalarni tashiydi, bargda fotosintez boradi. Kartoshka tugunagi va piyozbosh — organlarning oʻzgargan shakllari.", "f": ["Vegetativ organlar — ildiz, poya, barg", "Generativ organlar — gul, meva, urugʻ", "Organlar sistemasi — birga vazifa bajaruvchi organlar", "Hazm sistemasi — oziqni parchalaydi"]}, {"id": "c5", "b": "V", "n": "Oziqlanish", "t": "Oziqlanish — organizm tanasiga modda va energiya kirishi jarayoni.", "p": "Oʻsimliklar fotosintezda quyosh nuri energiyasi bilan karbonat angidrid va suvdan organik modda hosil qiladi, kislorod ajratadi. Ildiz suv va minerallarni shimadi. Hayvonlar tayyor organik moddalar bilan oziqlanadi. Odamda hazm ogʻiz boʻshligʻidan boshlanadi, oziq moddalar asosan ingichka ichakda qonga soʻriladi.", "f": ["Fotosintez — nurda organik modda hosil boʻlishi", "Avtotroflar — organik moddani oʻzi yaratadi", "Geterotroflar — tayyor organik modda bilan oziqlanadi", "Ingichka ichak — soʻrilish asosan shu yerda"]}, {"id": "c6", "b": "VI", "n": "Nafas olish", "t": "Nafas olishda organizm kislorod qabul qilib, energiya ajratadi va karbonat angidrid chiqaradi.", "p": "Oʻsimliklar kecha-kunduz nafas oladi. Gaz almashinuvi bargdagi ogʻizchalar va poyadagi yasmiqchalar orqali boradi. Odam havoni oʻpka bilan qabul qiladi, gazlar almashinuvi bronxlar va alveolalarda sodir boʻladi. Nafas chiqarilgan havoda karbonat angidrid koʻproq boʻladi.", "f": ["Ogʻizchalar — bargda gaz almashinuvi", "Yasmiqchalar — poyada gaz almashinuvi", "Alveolalar — oʻpkada gaz almashinuvi joyi", "Nafas olish soni — bir daqiqada sanaladi"]}, {"id": "c10", "b": "X", "n": "Reproduksiya, oʻsish va rivojlanish", "t": "Reproduksiya — organizmlarning koʻpayishi. Rivojlanish urugʻlangan tuxum hujayradan boshlanadi.", "p": "Jinsiy koʻpayishda jinsiy hujayralar ishtirok etadi. Urugʻli oʻsimlik urugʻdan rivojlanadi, urugʻ unishi uchun suv kerak. Vegetativ koʻpayishda oʻsimlik ildiz, poya yoki barg qismidan koʻpayadi: kartoshka tugunagi, tok qalamchasi. Ontogenez — organizmning individual rivojlanishi.", "f": ["Reproduksiya — organizmlarning koʻpayishi", "Vegetativ koʻpayish — oʻsimlik qismlaridan", "Ontogenez — umr davomidagi rivojlanish", "Urugʻ unishi — suv talab qiladi"]}, {"id": "c11", "b": "XI", "n": "Tur, populatsiya, ekosistema, biosfera", "t": "Tur, populatsiya, ekosistema va biosfera — tirik tabiatning ketma-ket yuqori darajalari.", "p": "Bir turga mansub, maʼlum hududda yashovchi organizmlar populatsiyani hosil qiladi. Ekosistema tirik organizmlar va ularning muhitidan iborat. Oziq zanjirida oʻsimliklar produsent, hayvonlar konsument, bakteriya va zamburugʻlar parchalovchidir. Energiyaning asosiy manbai — Quyosh. Barcha tirik organizmlar yashaydigan qobiq — biosfera.", "f": ["Populatsiya — bir tur, bir hudud", "Produsent — organik modda yaratadi", "Parchalovchilar — oʻlik qoldiqni sodda moddalarga aylantiradi", "Biosfera — hayot tarqalgan qobiq"]}];
+/* Q: [mavzu_id, savol, [4 variant], toʻgʻri_variant_raqami, izoh(ixtiyoriy)] */
+const Q=[["c2", "Hujayra tirik organizmning qanday birligi hisoblanadi?", ["Tuzilish va hayot faoliyati birligi", "Faqat himoya qavati", "Organlar yigʻindisi", "Oziq moddasi"], 0], ["c2", "Hujayrani tashqi muhitdan ajratib turuvchi qism qaysi?", ["Yadro", "Membrana", "Vakuola", "Sitoplazma"], 1], ["c2", "Hujayraning ichki muhitini nima tashkil etadi?", ["Sitoplazma", "Toʻqima", "Organ", "Ildiz"], 0], ["c2", "Hujayrada irsiy axborot saqlanadigan asosiy qism qaysi?", ["Vakuola", "Hujayra devori", "Yadro", "Membrana"], 2], ["c2", "Oʻsimlik hujayrasiga xos, fotosintezda qatnashadigan organoid qaysi?", ["Xloroplast", "Yadro", "Ribosoma", "Membrana"], 0], ["c2", "Hujayralarni kattalashtirib koʻrish uchun qaysi asbobdan foydalaniladi?", ["Tarozi", "Mikroskop", "Termometr", "Barometr"], 1], ["c2", "Bir xil tuzilish va vazifaga ega hujayralar yigʻindisi nima deyiladi?", ["Organ", "Toʻqima", "Organizm", "Molekula"], 1], ["c2", "Oʻsimlik hujayrasining tashqi qattiq qavati qanday vazifa bajaradi?", ["Hujayrani himoya qiladi va shaklini saqlaydi", "Irsiy axborotni saqlaydi", "Qonni haydaydi", "Oziqni hazm qiladi"], 0], ["c2", "Hujayra organoidlari qayerda joylashgan?", ["Sitoplazmada", "Barg tomirida", "Ildiz tukchasida", "Toʻqima orasida"], 0], ["c2", "Mikroskopda tasvirni kattalashtirish darajasi odatda nimalarga bogʻliq?", ["Obyektiv va okulyar kattalashtirishiga", "Stolning balandligiga", "Preparat rangiga", "Xona haroratiga"], 0], ["c3", "Oʻsimlikning tuproqdan suv va mineral moddalarni oluvchi organi qaysi?", ["Barg", "Ildiz", "Gul", "Meva"], 1], ["c3", "Ildizning asosiy vazifalaridan biri qaysi?", ["Oʻsimlikni tuproqqa mahkamlash", "Urugʻ hosil qilish", "Changlanishni amalga oshirish", "Meva pishirish"], 0], ["c3", "Poya qanday vazifani bajaradi?", ["Oʻsimlikni tutib turadi va moddalarni tashiydi", "Faqat urugʻ hosil qiladi", "Faqat suvni yutadi", "Faqat fotosintez qiladi"], 0], ["c3", "Bargning muhim vazifalaridan biri qaysi?", ["Fotosintez", "Tuproqqa mahkamlash", "Urugʻni himoyalash", "Changlanish"], 0], ["c3", "Oʻsimlikning ildiz, poya va bargi qanday organlar?", ["Generativ", "Vegetativ", "Sezgi", "Hazm"], 1], ["c3", "Oʻsimlikning gul, meva va urugʻi qanday organlarga kiradi?", ["Vegetativ", "Generativ", "Tayanch", "Nafas olish"], 1], ["c3", "Kartoshka tugunagi qaysi organning oʻzgargan shakli?", ["Ildiz", "Poya", "Barg", "Gul"], 1], ["c3", "Piyozbosh oʻsimlikning qaysi organlari oʻzgarishidan hosil boʻladi?", ["Barg va poya", "Gul va meva", "Ildiz va gul", "Urugʻ va meva"], 0], ["c3", "Birgalikda muayyan vazifani bajaruvchi organlar majmui nima deyiladi?", ["Toʻqima", "Organlar sistemasi", "Hujayra", "Molekula"], 1], ["c3", "Odamda ovqat hazm qilish sistemasi qanday vazifa bajaradi?", ["Oziqni parchalaydi va oʻzlashtirishga yordam beradi", "Kislorodni qonga oʻtkazadi", "Tana harakatini boshqaradi", "Qonni yurakdan haydaydi"], 0], ["c5", "Oʻsimlik ildizi tuproqdan asosan nimalarni shimib oladi?", ["Suv va mineral moddalarni", "Kislorod va shakarni", "Faqat organik moddalarni", "Tayyor oqsillarni"], 0], ["c5", "Oʻsimliklarda organik moddalar asosan qaysi jarayonda hosil boʻladi?", ["Nafas olishda", "Fotosintezda", "Bugʻlanishda", "Changlanishda"], 1], ["c5", "Fotosintez uchun zarur boʻlgan energiya manbai qaysi?", ["Shamol", "Quyosh nuri", "Tuproq issiqligi", "Oʻsimlik urugʻi"], 1], ["c5", "Fotosintezda oʻsimlik havodan qaysi gazni oʻzlashtiradi?", ["Kislorod", "Azot", "Karbonat angidrid", "Vodorod"], 2], ["c5", "Fotosintez natijasida atmosferaga qaysi gaz ajralib chiqadi?", ["Kislorod", "Azot", "Karbonat angidrid", "Metan"], 0], ["c5", "Tayyor organik moddalar bilan oziqlanadigan organizmlar qanday ataladi?", ["Avtotroflar", "Geterotroflar", "Prokariotlar", "Produsentlar"], 1], ["c5", "Oʻtxoʻr hayvonlar asosan nima bilan oziqlanadi?", ["Oʻsimliklar bilan", "Faqat goʻsht bilan", "Mineral tuzlar bilan", "Zamburugʻlar bilan"], 0], ["c5", "Odamda ovqat hazm qilish qayerdan boshlanadi?", ["Oshqozondan", "Ogʻiz boʻshligʻidan", "Ingichka ichakdan", "Qizilkoʻngachdan"], 1], ["c5", "Oziq moddalar qonga asosan qayerda soʻriladi?", ["Ogʻiz boʻshligʻida", "Qizilkoʻngachda", "Ingichka ichakda", "Yoʻgʻon ichakda"], 2], ["c5", "Oʻsimlik oʻsishi uchun mineral moddalar nima sababdan kerak?", ["Hayotiy jarayonlar va rivojlanish uchun", "Faqat gul rangini oʻzgartirish uchun", "Urugʻni tuproqdan chiqarish uchun", "Barglarni quritish uchun"], 0], ["c6", "Nafas olish jarayonining asosiy ahamiyati nimada?", ["Energiya ajralib chiqishida", "Urugʻ hosil qilishda", "Suvni shimishda", "Changlanishda"], 0], ["c6", "Nafas olishda organizmlar odatda qaysi gazni oʻzlashtiradi?", ["Kislorod", "Azot", "Karbonat angidrid", "Metan"], 0], ["c6", "Nafas olish natijasida qaysi gaz ajralib chiqadi?", ["Vodorod", "Karbonat angidrid", "Azot", "Ozon"], 1], ["c6", "Oʻsimliklar nafas oladimi?", ["Faqat kunduzi", "Faqat tunda", "Kecha-kunduz", "Faqat gullaganda"], 2], ["c6", "Oʻsimliklarda gaz almashinuvi bargning qaysi tuzilmalari orqali sodir boʻladi?", ["Ogʻizchalar", "Ildiz qopqogʻi", "Urugʻ poʻsti", "Gulkosa"], 0], ["c6", "Daraxt poyasidagi yasmiqchalar qanday vazifada qatnashadi?", ["Gaz almashinuvida", "Urugʻ hosil qilishda", "Suvni tuproqdan shimishda", "Changlanishda"], 0], ["c6", "Odam nafas olishda havoni asosan qaysi organ bilan qabul qiladi?", ["Oʻpka", "Oshqozon", "Jigar", "Buyrak"], 0], ["c6", "Oʻpkada gazlar almashinuvi qayerda sodir boʻladi?", ["Bronxlar va alveolalarda", "Qizilkoʻngachda", "Oshqozonda", "Yurak boʻlmalarida"], 0], ["c6", "Nafas chiqarilgan havoda qaysi gazning miqdori koʻproq boʻladi?", ["Karbonat angidrid", "Kislorod", "Vodorod", "Ozon"], 0], ["c6", "Nafas olishni toʻgʻri kuzatish uchun qaysi koʻrsatkich sanalishi mumkin?", ["Bir daqiqadagi nafas olish soni", "Soch uzunligi", "Tana rangi", "Oyoq kiyim oʻlchami"], 0], ["c10", "Reproduksiya nima?", ["Organizmlarning koʻpayishi", "Nafas olishi", "Oziqni hazm qilishi", "Harakatlanishi"], 0], ["c10", "Jinsiy koʻpayishda odatda qaysi hujayralar ishtirok etadi?", ["Jinsiy hujayralar", "Teri hujayralari", "Nerv hujayralari", "Barg hujayralari"], 0], ["c10", "Urugʻli oʻsimliklarda yangi oʻsimlik rivojlanishi nimadan boshlanadi?", ["Urugʻdan", "Meva poʻstidan", "Barg tomiridan", "Gulbanddan"], 0], ["c10", "Urugʻ unishi uchun zarur sharoitlardan biri qaysi?", ["Suv", "Mutlaq quruqlik", "Doimiy qorongʻilik", "Tuzning koʻpligi"], 0], ["c10", "Oʻsimlikning ildiz, poya yoki barg qismlaridan koʻpayishi qanday ataladi?", ["Vegetativ koʻpayish", "Jinsiy koʻpayish", "Nafas olish", "Fotosintez"], 0], ["c10", "Kartoshka koʻpincha qaysi yoʻl bilan koʻpaytiriladi?", ["Tugunagi orqali", "Guli orqali", "Barg ogʻizchalari orqali", "Ildiz tukchalari orqali"], 0], ["c10", "Organizmning urugʻlangan tuxum hujayradan boshlab umrining oxirigacha boʻlgan rivojlanishi nima deyiladi?", ["Ontogenez", "Fotosintez", "Moddalar almashinuvi", "Transpiratsiya"], 0], ["c10", "Urugʻdan unib chiqqan oʻsimlikning oʻsishi qaysi jarayonlarga bogʻliq?", ["Hujayralarning boʻlinishi va kattalashishiga", "Faqat barg rangiga", "Faqat shamol tezligiga", "Faqat gul hidiga"], 0], ["c10", "Hayvonlarda embrion rivojlanishi qayerda kechishi mumkin?", ["Tuxum ichida yoki ona organizmida", "Faqat tuproqda", "Faqat suv yuzasida", "Faqat oʻsimlik bargida"], 0], ["c10", "Oʻsimlikning vegetativ koʻpayishiga qaysi misol mos keladi?", ["Tokni qalamchasidan koʻpaytirish", "Gulning changlanishi", "Urugʻ hosil boʻlishi", "Mevaning pishishi"], 0], ["c11", "Bir turga mansub organizmlar qanday umumiy belgilarga ega boʻladi?", ["Oʻxshash tuzilish va oʻzaro koʻpayish xususiyatlariga", "Har doim bir xil rangga", "Bir xil yoshga", "Faqat bitta yashash joyiga"], 0], ["c11", "Bir turga mansub, maʼlum hududda yashaydigan organizmlar guruhi nima deyiladi?", ["Populatsiya", "Toʻqima", "Organ", "Hujayra"], 0], ["c11", "Ekosistema tarkibiga nimalar kiradi?", ["Tirik organizmlar va ular yashaydigan muhit", "Faqat hayvonlar", "Faqat oʻsimliklar", "Faqat suv va havo"], 0], ["c11", "Ekosistemadagi tirik organizmlar va jonsiz muhit oʻrtasidagi munosabatlar nimani anglatadi?", ["Ekosistemaning oʻzaro bogʻliqligini", "Hujayraning boʻlinishini", "Organizmning koʻpayishini", "Moddalarning muzlashini"], 0], ["c11", "Oziq zanjirida oʻsimliklar odatda qanday vazifani bajaradi?", ["Produsentlar", "Konsumentlar", "Parchalovchilar", "Parazitlar"], 0], ["c11", "Oʻlik organik moddalarni parchalab, eng sodda moddalarga aylantiruvchi organizmlar qaysi?", ["Parchalovchilar", "Produsentlar", "Yirtqichlar", "Oʻtxoʻrlar"], 0], ["c11", "Quyidagilardan qaysi biri oziq zanjiriga misol boʻladi?", ["Oʻt → chigirtka → qurbaqa → ilon", "Tosh → qum → suv → havo", "Barg → ildiz → tuproq → quyosh", "Suv → tosh → shamol → bulut"], 0], ["c11", "Tirik organizmlar yashaydigan Yer qobigʻi nima deyiladi?", ["Biosfera", "Litosfera", "Magma", "Yadro"], 0], ["c11", "Organizmlarning yashash muhitiga moslanishi ularga qanday yordam beradi?", ["Muhitda yashab qolish va koʻpayishga", "Har doim kattalashishga", "Boshqa turga aylanishga", "Nafas olishni toʻxtatishga"], 0], ["c11", "Ekosistemada energiyaning asosiy manbai qaysi?", ["Quyosh", "Tuproq", "Shamol", "Oy"], 0]];
+const C=[["Hujayra", "Tirik organizmning tuzilish va hayot faoliyati birligi."], ["Membrana", "Hujayrani tashqi muhitdan ajratib turuvchi qism."], ["Yadro", "Irsiy axborot saqlanadigan asosiy qism."], ["Xloroplast", "Fotosintezda qatnashadigan oʻsimlik hujayrasi organoidi."], ["Fotosintez", "Quyosh nurida CO₂ va suvdan organik modda hosil boʻlishi."], ["Geterotroflar", "Tayyor organik moddalar bilan oziqlanadigan organizmlar."], ["Ontogenez", "Urugʻlangan tuxum hujayradan umr oxirigacha rivojlanish."], ["Populatsiya", "Bir turga mansub, maʼlum hududda yashovchi organizmlar guruhi."]];
+/* ===== DASTUR ===== */
+const $=s=>document.querySelector(s);
+const sh=q=>{const o=q[2].map((t,i)=>[t,i===q[3]]).sort(()=>Math.random()-.5);return [q[0],q[1],o.map(x=>x[0]),o.findIndex(x=>x[1]),q[4]||'',Q.indexOf(q)]};
+let S,KEY='bioai2_guest';
+const blank=()=>({read:[],best:0,done:0,pts:0,name:'Oʻquvchi',tp:{}});
+function loadS(){S=blank();try{const x=localStorage.getItem(KEY);if(x)S=Object.assign(S,JSON.parse(x))}catch(e){}S.wrong=(S.wrong||[]).filter(i=>Q[i]);S.read=S.read.filter(i=>T.some(t=>t.id===i));S.tp=Object.fromEntries(Object.entries(S.tp).filter(([k])=>T.some(t=>t.id===k)))}
+loadS();
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+const FACTS=['Odam tanasidagi hujayralar soni taxminan 37 trillionga teng.','Fotosintez tufayli Yer atmosferasida kislorod toʻplangan.','Odam DNKsi shimpanze DNKsi bilan deyarli 99% oʻxshash.','Yurak bir kunda taxminan 100 000 marta uradi.'];
+const views=['bosh','darslar','test','kartalar','lab','natija'];
+function route(){const v=views.includes(location.hash.slice(1))?location.hash.slice(1):'bosh';
+views.forEach(x=>{$('#v-'+x).classList.toggle('on',x===v);document.querySelector(`aside a[data-v="${x}"]`).classList.toggle('on',x===v)});$('main').scrollTop=0}
+addEventListener('hashchange',route);
+function head(){$('#pts').textContent=S.pts;const L=Math.floor(S.pts/100)+1;
+$('#lvl').textContent=L+'-daraja';$('#lvb').style.width=S.pts%100+'%';$('#lvlx').textContent=(100-S.pts%100)+' ball keyingi darajaga';
+$('#rank').textContent=S.pts<100?'Boshlangʻich':S.pts<300?'Oʻrta daraja':'Ilgʻor';$('#nm').value=S.name}
+$('#nm').oninput=e=>{S.name=e.target.value;save()};
+function stats(){const d=[['','Oʻqilgan darslar',S.read.length+' / '+T.length,'rgba(61,158,85,.2)'],['','Eng yaxshi natija',S.best+'%','rgba(246,196,83,.3)'],['','Yechilgan testlar',S.done,'rgba(74,155,199,.22)']];
+$('#stats').innerHTML=d.map(x=>`<div class="stat"><i style="background:${x[3]}">${x[0]}</i><div><span>${x[1]}</span><b>${x[2]}</b></div></div>`).join('');
+$('#prog').innerHTML=$('#stats').innerHTML;
+$('#bars').innerHTML=T.map(t=>{const p=S.tp[t.id]||0;return `<div style="margin:10px 0"><div class="row" style="margin:0"><b>${t.n}</b><span>${p}%</span></div><div class="bar" style="margin:4px 0 0"><i style="width:${p}%"></i></div></div>`}).join('')}
+const G=[['#3d9e55','#2d6a4f'],['#4a9bc7','#2f6f99'],['#e0a030','#c27a18'],['#c2556b','#9b3a52'],['#9a6b43','#7a5232'],['#5fa88a','#3a7d66']];
+function rich(){const p=S.pts%100;$('#rg').style.setProperty('--p',p+'%');$('#rgn').textContent=Math.floor(S.pts/100)+1;$('#rgt').textContent='Keyingi darajagacha '+(100-p)+' ball';
+$('#tcs').innerHTML=T.map((t,i)=>{const r=S.read.includes(t.id),q=S.tp[t.id]||0;return `<a class="tc" href="#darslar" data-i="${i}" style="--c1:${G[i%6][0]};--c2:${G[i%6][1]}"><span class="tg">${t.b||t.n[0]}</span><b>${t.n}</b><small>${r?'Dars oʻqilgan':'Dars oʻqilmagan'}, test ${q}%</small><div class="bar"><i style="width:${(r?50:0)+q/2}%"></i></div></a>`}).join('');
+$('#tcs').querySelectorAll('.tc').forEach(a=>a.onclick=()=>{cur=+a.dataset.i;lesson()})}
+function extras(){const ni=T.findIndex(t=>!S.read.includes(t.id)),cb=$('#cont');if(cb){cb.textContent=ni<0?'Darslarni takrorlash':(S.read.length?'Davom etish: ':'Boshlash: ')+T[ni].n;cb.onclick=()=>{cur=ni<0?0:ni;lesson()}}
+const B=[['Birinchi dars','Bitta darsni tugating',S.read.length>=1],['Barcha darslar','Hamma darslarni tugating',S.read.length>=T.length],['Birinchi test','Testni oxirigacha yeching',S.done>=1],['Yaxshi natija','Testda 80% va undan yuqori',S.best>=80],['100 ball','100 ball yigʻing',S.pts>=100]];
+$('#badges').innerHTML=B.map(b=>`<div class='bd ${b[2]?'on':''}'><i>${b[2]?'✓':''}</i><div><b>${b[0]}</b><span>${b[1]}</span></div></div>`).join('')}
+function refresh(){head();stats();rich();extras()}
+const field=$('#field');
+for(let i=0;i<12;i++){const c=document.createElement('div');c.className='cell';const s=30+Math.random()*50;c.style.cssText=`width:${s}px;height:${s}px;left:${Math.random()*88}%;top:${Math.random()*88}%;animation-delay:-${Math.random()*8}s;animation-duration:${7+Math.random()*6}s`;field.appendChild(c)}
+document.querySelectorAll('.zoom button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.zoom button').forEach(x=>x.setAttribute('aria-pressed',x===b));field.style.transform=`scale(${b.dataset.z})`});
+$('#dfact').textContent=FACTS[new Date().getDate()%FACTS.length];
+let cur=0;
+function lesson(){const t=T[cur],r=S.read.includes(t.id);
+$('#tlist').innerHTML=T.map((x,i)=>`<button class="item" aria-selected="${i===cur}" data-i="${i}">${x.n}<span>${S.read.includes(x.id)?'✓':''}</span></button>`).join('');
+$('#tlist').querySelectorAll('.item').forEach(b=>b.onclick=()=>{cur=+b.dataset.i;lesson()});
+const terms=t.f.filter(x=>x.includes(' — ')).map(x=>x.split(' — ')[0]),cq=(x=>x&&sh(x))(Q.find(q=>q[0]===t.id));
+$('#lesson').innerHTML=`<div><div class='lh'><span>Mavzu ${cur+1} / ${T.length}</span><span>2 daqiqa</span><span>${S.read.length} / ${T.length} dars tugatilgan</span></div><h3>${t.n}</h3><div class='obj'><h4>Bu darsda oʻrganasiz</h4><ul><li>Mavzuning asosiy tushunchalarini tushuntirish</li>${terms.length?`<li>Atamalar bilan ishlash: ${terms.join(', ')}</li>`:''}<li>Tekshiruv savoliga javob berish</li></ul></div><p>${t.t}</p><p>${t.p}</p>${terms.length?`<div class='terms'>${terms.map(x=>`<span>${x}</span>`).join('')}</div>`:''}<button class="done" aria-pressed="${r}" id="dn">${r?'Oʻqildi':'Oʻqib boʻldim (+20 ball)'}</button>${cq?`<div class='check'><h4>Tekshirib koʻring</h4><div>${cq[1]}</div>${cq[2].map((o,i)=>`<button class='copt' data-i='${i}'>${o}</button>`).join('')}<div id='cfb'></div></div>`:''}<div class='lnav'><button id='pv' ${cur?'':'disabled'}>Oldingi dars</button><button id='nxl' ${cur<T.length-1?'':'disabled'}>Keyingi dars</button></div></div><div class="facts"><h4>Eslab qoling</h4><ul>${t.f.map(f=>`<li>${f}</li>`).join('')}</ul></div>`;
+$('#lesson').querySelectorAll('.copt').forEach(b=>b.onclick=()=>{const i=+b.dataset.i;$('#lesson').querySelectorAll('.copt').forEach((x,j)=>{x.disabled=true;if(j===cq[3])x.classList.add('ok');else if(x===b)x.classList.add('bad')});$('#cfb').innerHTML=`<p style='margin:10px 0 0'><b>${i===cq[3]?'Toʻgʻri.':'Xato.'}</b> ${i===cq[3]?'':'Toʻgʻri javob: '+cq[2][cq[3]]+'. '}${cq[4]}</p>`});
+$('#pv').onclick=()=>{cur--;lesson()};$('#nxl').onclick=()=>{cur++;lesson()};
+$('#dn').onclick=()=>{if(r){S.read=S.read.filter(i=>i!==t.id)}else{S.read.push(t.id);S.pts+=20}save();lesson();refresh()}}
+let topic='mix',qs=[],qi=0,sc=0,locked=false,res=[];
+function chips(){$('#chips').innerHTML=[['mix','Tezkor test (10)'],['all','Barchasi ('+Q.length+')'],...(S.wrong.length?[['err','Xatolar ustida ishlash ('+S.wrong.length+')']]:[]),...T.map(t=>[t.id,t.n])].map(([id,n])=>`<button class="chip" aria-selected="${id===topic}" data-id="${id}">${n}</button>`).join('');
+$('#chips').querySelectorAll('.chip').forEach(b=>b.onclick=()=>{topic=b.dataset.id;start()})}
+function start(){if(topic==='err'&&!S.wrong.length)topic='mix';let a=Q.filter(q=>topic==='err'?S.wrong.includes(Q.indexOf(q)):(topic==='all'||topic==='mix'||q[0]===topic)).sort(()=>Math.random()-.5);if(topic==='mix')a=a.slice(0,10);qs=a.map(sh);qi=0;sc=0;res=[];chips();show()}
+function show(){const el=$('#quiz');
+if(qi>=qs.length){const p=qs.length?Math.round(sc/qs.length*100):0;if(p>S.best)S.best=p;S.done++;if(T.some(t=>t.id===topic))S.tp[topic]=Math.max(S.tp[topic]||0,p);save();refresh();
+el.innerHTML=`<div class="score"><big>${p}%</big><p>${qs.length} savoldan ${sc} tasi toʻgʻri, ${sc*10} ball yigʻdingiz.</p>${p<70&&T.some(t=>t.id===topic)?'<p>Natija 70% dan past. Avval mavzu darsini qayta oʻqib chiqing, keyin testni takrorlang.</p>':''}<button class="btn" id="rs">Qayta yechish</button></div>`;$('#rs').onclick=start;return}
+const q=qs[qi],tp=T.find(t=>t.id===q[0])||{};locked=false;
+el.innerHTML=`<div class="row" style="margin:0"><span>Savol ${qi+1} / ${qs.length}</span><span>Toʻgʻri: ${sc}</span></div><div class="bar"><i style="width:${qi/qs.length*100}%"></i></div><div class="dots">${qs.map((_,k)=>`<i class="${k<qi?(res[k]?'g':'r'):k===qi?'c':''}"></i>`).join('')}</div><div class="tag">${tp.n}</div><div class="q">${q[1]}</div><div class="opts">${q[2].map((o,i)=>`<button class="opt" data-i="${i}"><em>${'ABCD'[i]}</em>${o}</button>`).join('')}</div><div id="fb"></div>`;
+el.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{if(locked)return;locked=true;const i=+b.dataset.i;
+res[qi]=i===q[3];{const w=S.wrong,k=w.indexOf(q[5]);if(i===q[3]){if(k>=0)w.splice(k,1)}else if(k<0)w.push(q[5])}if(i===q[3]){sc++;S.pts+=10;save();refresh()}
+el.querySelectorAll('.opt').forEach((x,j)=>{x.disabled=true;if(j===q[3])x.classList.add('ok');else if(x===b)x.classList.add('bad')});
+$('#fb').innerHTML=`<div class="why"><b>${i===q[3]?'Toʻgʻri! +10 ball.':'Xato.'}</b> ${i===q[3]?'':'Toʻgʻri javob: '+q[2][q[3]]+'. '}${q[4]}</div><div class="row"><span></span><button class="btn" id="nx">${qi+1<qs.length?'Keyingi savol':'Natijani koʻrish'}</button></div>`;
+$('#nx').onclick=()=>{qi++;show()};$('#nx').focus()})}
+$('#cards').innerHTML=C.map(c=>`<button class="fc" aria-pressed="false" aria-label="${c[0]}"><div><span class="f">${c[0]}</span><span class="b">${c[1]}</span></div></button>`).join('');
+$('#cards').querySelectorAll('.fc').forEach(b=>b.onclick=()=>b.setAttribute('aria-pressed',b.getAttribute('aria-pressed')!=='true'));
+const O={devor:['Hujayra devori','Hujayrani himoya qiladi va shaklini saqlaydi. Hayvon hujayrasida bunday qavat yoʻq.',1],membrana:['Membrana','Hujayrani tashqi muhitdan ajratadi va kerakli moddalarni oʻtkazadi.',0],sitoplazma:['Sitoplazma','Hujayraning ichki muhiti. Organoidlar shu yerda joylashadi.',0],yadro:['Yadro','Irsiy axborotni saqlaydi va hujayra hayotini boshqaradi.',0],vakuola:['Vakuola','Suv va erigan moddalarni toʻplaydi. Oʻsimlik hujayrasida kattaroq boʻladi.',0],xloroplast:['Xloroplast','Fotosintez shu yerda boradi: quyosh nuridan organik modda hosil boʻladi.',1],mitoxondriya:['Mitoxondriya','Nafas olish jarayonida hujayra uchun energiya ajratadi.',0]};
+let L={sel:null,mode:false,t:null,fb:''};
+const nextT=()=>{const k=Object.keys(O).filter(x=>x!==L.t);return k[Math.floor(Math.random()*k.length)]};
+function pick(k){if(L.mode){if(k===L.t){S.pts+=5;save();refresh();L.fb='<div class="why"><b>Toʻgʻri!</b> +5 ball. Keyingisini toping.</div>';L.t=nextT()}else L.fb='<div class="why">Bu — <b>'+O[k][0]+'</b>. Yana urinib koʻring.</div>'}else L.sel=k;lab()}
+function lab(){document.querySelectorAll('.part').forEach(p=>p.classList.toggle('sel',!L.mode&&p.dataset.p===L.sel));
+let h;if(L.mode)h=`<h3>Topshiriq</h3><p>Modelda <b>${O[L.t][0]}</b> qaysi? Uni bosing.</p>${L.fb}`;
+else if(L.sel){const o=O[L.sel];h=`<h3>${o[0]}</h3><p>${o[1]}</p>${o[2]?'<span class="pill">Faqat oʻsimlik hujayrasida</span>':''}`}
+else h='<h3>Hujayra modeli</h3><p>Rasmdagi biror qismni bosing yoki pastdagi roʻyxatdan tanlang.</p>';
+$('#cinfo').innerHTML=h+(L.mode?'':`<div class="chips" style="margin:16px 0 0">${Object.keys(O).map(k=>`<button class="chip" data-k="${k}" aria-selected="${k===L.sel}">${O[k][0]}</button>`).join('')}</div>`)+`<div style="margin-top:18px"><button class="btn" id="lmode">${L.mode?'Oʻrganish rejimiga qaytish':'Topshiriq rejimi'}</button></div>`;
+$('#cinfo').querySelectorAll('.chip').forEach(b=>b.onclick=()=>pick(b.dataset.k));
+$('#lmode').onclick=()=>{L.mode=!L.mode;L.fb='';if(L.mode)L.t=nextT();lab()}}
+document.querySelectorAll('.part').forEach(p=>{p.setAttribute('tabindex','0');p.setAttribute('role','button');p.setAttribute('aria-label',O[p.dataset.p][0]);p.onclick=()=>pick(p.dataset.p);p.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();pick(p.dataset.p)}}});
+lesson();start();refresh();route();lab();
+const PK='bioai_profiles',AK='bioai_active';
+let P={};try{P=JSON.parse(localStorage.getItem(PK)||'{}')}catch(e){}
+const saveP=()=>{try{localStorage.setItem(PK,JSON.stringify(P))}catch(e){}};
+const esc=s=>s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const hex=b=>[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('');
+async function hp(pin,salt){return hex(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(salt+':'+pin)))}
+const A=$('#aview');let fails=0,until=0;
+function enter(id){try{localStorage.setItem(AK,id)}catch(e){}KEY='bioai2_'+id;loadS();S.name=P[id].name;cur=0;topic='mix';$('#auth').hidden=true;lesson();start();refresh();lab();location.hash='#bosh';route()}
+function showAuth(m,id){$('#auth').hidden=false;const ids=Object.keys(P);if(m==='pick'&&!ids.length)m='new';
+if(m==='pick'){A.innerHTML=`<p class="asub">Profilni tanlang</p><div class="plist">${ids.map(i=>`<button class="pcard" data-i="${i}"><b>${esc(P[i].name)[0].toUpperCase()}</b>${esc(P[i].name)}</button>`).join('')}<button class="pcard add" data-add="1"><b>+</b>Yangi profil</button></div>`;
+A.querySelectorAll('.pcard').forEach(b=>b.onclick=()=>b.dataset.add?showAuth('new'):showAuth('login',b.dataset.i))}
+else if(m==='login'){const p=P[id];A.innerHTML=`<p class="asub">Salom, <b>${esc(p.name)}</b>! PIN-kodni kiriting.</p><label class="lab">PIN-kod<input id="pin" type="password" inputmode="numeric" maxlength="4" autocomplete="off"></label><div class="aerr" id="aerr" aria-live="polite"></div><button class="btn" id="go" style="width:100%">Kirish</button><div class="alinks"><button id="bk">Orqaga</button><button id="fg">PIN esimdan chiqdi</button></div>`;
+const go=async()=>{if(Date.now()<until){$('#aerr').textContent='Juda koʻp xato urinish. Biroz kuting.';return}const h=await hp($('#pin').value,p.salt);if(h===p.hash){fails=0;enter(id)}else{if(++fails>=5){until=Date.now()+30000;fails=0}$('#aerr').textContent='PIN-kod notoʻgʻri.';$('#pin').value='';$('#pin').focus()}};
+$('#go').onclick=go;$('#pin').onkeydown=e=>{if(e.key==='Enter')go()};$('#bk').onclick=()=>showAuth('pick');
+$('#fg').onclick=()=>{$('#aerr').innerHTML='PIN-kodni tiklab boʻlmaydi: profilni oʻchirib, yangisini yarating (natijalar yoʻqoladi). <button class="dang" id="del">Profilni oʻchirish</button>';$('#del').onclick=()=>{delete P[id];saveP();try{localStorage.removeItem('bioai2_'+id)}catch(e){}showAuth('pick')}};
+$('#pin').focus()}
+else{A.innerHTML=`<p class="asub">Yangi profil yarating</p><label class="lab">Ism<input id="nn" maxlength="14" autocomplete="off"></label><label class="lab">PIN-kod (4 ta raqam)<input id="p1" type="password" inputmode="numeric" maxlength="4" autocomplete="new-password"></label><label class="lab">PIN-kodni takrorlang<input id="p2" type="password" inputmode="numeric" maxlength="4" autocomplete="new-password"></label><div class="aerr" id="aerr" aria-live="polite"></div><button class="btn" id="go" style="width:100%">Profil yaratish</button>${ids.length?'<div class="alinks"><button id="bk">Orqaga</button></div>':''}`;
+$('#go').onclick=async()=>{const n=$('#nn').value.trim(),a=$('#p1').value,b=$('#p2').value,e=$('#aerr');
+if(!n){e.textContent='Ismingizni yozing.';return}
+if(ids.some(i=>P[i].name.toLowerCase()===n.toLowerCase())){e.textContent='Bu ismli profil bor. Boshqa ism tanlang.';return}
+if(!/^\d{4}$/.test(a)){e.textContent='PIN-kod 4 ta raqamdan iborat boʻlishi kerak.';return}
+if(a!==b){e.textContent='PIN-kodlar bir xil emas.';return}
+const salt=crypto.getRandomValues(new Uint32Array(4)).join('-'),id='u'+Date.now().toString(36);
+P[id]={name:n,salt,hash:await hp(a,salt)};saveP();enter(id)};
+if(ids.length)$('#bk').onclick=()=>showAuth('pick');$('#nn').focus()}}
+$('#out').onclick=()=>{try{localStorage.removeItem(AK)}catch(e){}showAuth('pick')};
+let aid=null;try{aid=localStorage.getItem(AK)}catch(e){}
+if(aid&&P[aid])enter(aid);else showAuth('pick');
+</script></body></html>
